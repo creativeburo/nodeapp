@@ -11,16 +11,17 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-
-    connection.query('SELECT * FROM td_Cat', function (error, results, fields) {
-        if (error) throw error;
-        res.send(results[0]);
-
- /* res.render('index', { title: 'Express' }); */
+connection.query('SELECT * FROM td_Cat', function(err, rows, fields) {
+    if (err) throw err;
+    console.log('The solution is: ', rows);
 });
 
-    connection.end();
+connection.end();
+
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Express' });
+});
 
 module.exports = router;
